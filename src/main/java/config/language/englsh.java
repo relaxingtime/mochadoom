@@ -1,4 +1,4 @@
-package doom;
+package config.language;
 
 // Emacs style mode select   -*- C++ -*- 
 //-----------------------------------------------------------------------------
@@ -122,16 +122,6 @@ public final static String  GOTSHOTGUN="You got the shotgun!";
 public final static String  GOTSHOTGUN2="You got the super shotgun!";
 
 //
-// P_Doors.C
-//
-public final static String  PD_BLUEO="You need a blue key to activate this object";
-public final static String  PD_REDO="You need a red key to activate this object";
-public final static String  PD_YELLOWO="You need a yellow key to activate this object";
-public final static String  PD_BLUEK="You need a blue key to open this door";
-public final static String  PD_REDK="You need a red key to open this door";
-public final static String  PD_YELLOWK="You need a yellow key to open this door";
-
-//
 //  G_game.C
 //
 public final static String  GGSAVED="game saved.";
@@ -140,155 +130,6 @@ public final static String  GGSAVED="game saved.";
 //  HU_stuff.C
 //
 public final static String  HUSTR_MSGU="[Message unsent]";
-
-public final static String  HUSTR_E1M1="E1M1: Hangar";
-public final static String  HUSTR_E1M2="E1M2: Nuclear Plant";
-public final static String  HUSTR_E1M3="E1M3: Toxin Refinery";
-public final static String  HUSTR_E1M4="E1M4: Command Control";
-public final static String  HUSTR_E1M5="E1M5: Phobos Lab";
-public final static String  HUSTR_E1M6="E1M6: Central Processing";
-public final static String  HUSTR_E1M7="E1M7: Computer Station";
-public final static String  HUSTR_E1M8="E1M8: Phobos Anomaly";
-public final static String  HUSTR_E1M9="E1M9: Military Base";
-
-public final static String  HUSTR_E2M1="E2M1: Deimos Anomaly";
-public final static String  HUSTR_E2M2="E2M2: Containment Area";
-public final static String  HUSTR_E2M3="E2M3: Refinery";
-public final static String  HUSTR_E2M4="E2M4: Deimos Lab";
-public final static String  HUSTR_E2M5="E2M5: Command Center";
-public final static String  HUSTR_E2M6="E2M6: Halls of the Damned";
-public final static String  HUSTR_E2M7="E2M7: Spawning Vats";
-public final static String  HUSTR_E2M8="E2M8: Tower of Babel";
-public final static String  HUSTR_E2M9="E2M9: Fortress of Mystery";
-
-public final static String  HUSTR_E3M1="E3M1: Hell Keep";
-public final static String  HUSTR_E3M2="E3M2: Slough of Despair";
-public final static String  HUSTR_E3M3="E3M3: Pandemonium";
-public final static String  HUSTR_E3M4="E3M4: House of Pain";
-public final static String  HUSTR_E3M5="E3M5: Unholy Cathedral";
-public final static String  HUSTR_E3M6="E3M6: Mt. Erebus";
-public final static String  HUSTR_E3M7="E3M7: Limbo";
-public final static String  HUSTR_E3M8="E3M8: Dis";
-public final static String  HUSTR_E3M9="E3M9: Warrens";
-
-public final static String  HUSTR_E4M1="E4M1: Hell Beneath";
-public final static String  HUSTR_E4M2="E4M2: Perfect Hatred";
-public final static String  HUSTR_E4M3="E4M3: Sever The Wicked";
-public final static String  HUSTR_E4M4="E4M4: Unruly Evil";
-public final static String  HUSTR_E4M5="E4M5: They Will Repent";
-public final static String  HUSTR_E4M6="E4M6: Against Thee Wickedly";
-public final static String  HUSTR_E4M7="E4M7: And Hell Followed";
-public final static String  HUSTR_E4M8="E4M8: Unto The Cruel";
-public final static String  HUSTR_E4M9="E4M9: Fear";
-
-public final static String  HUSTR_1="level 1: entryway";
-public final static String  HUSTR_2="level 2: underhalls";
-public final static String  HUSTR_3="level 3: the gantlet";
-public final static String  HUSTR_4="level 4: the focus";
-public final static String  HUSTR_5="level 5: the waste tunnels";
-public final static String  HUSTR_6="level 6: the crusher";
-public final static String  HUSTR_7="level 7: dead simple";
-public final static String  HUSTR_8="level 8: tricks and traps";
-public final static String  HUSTR_9="level 9: the pit";
-public final static String  HUSTR_10="level 10: refueling base";
-public final static String  HUSTR_11="level 11: 'o' of destruction!";
-
-public final static String  HUSTR_12="level 12: the factory";
-public final static String  HUSTR_13="level 13: downtown";
-public final static String  HUSTR_14="level 14: the inmost dens";
-public final static String  HUSTR_15="level 15: industrial zone";
-public final static String  HUSTR_16="level 16: suburbs";
-public final static String  HUSTR_17="level 17: tenements";
-public final static String  HUSTR_18="level 18: the courtyard";
-public final static String  HUSTR_19="level 19: the citadel";
-public final static String  HUSTR_20="level 20: gotcha!";
-
-public final static String  HUSTR_21="level 21: nirvana";
-public final static String  HUSTR_22="level 22: the catacombs";
-public final static String  HUSTR_23="level 23: barrels o' fun";
-public final static String  HUSTR_24="level 24: the chasm";
-public final static String  HUSTR_25="level 25: bloodfalls";
-public final static String  HUSTR_26="level 26: the abandoned mines";
-public final static String  HUSTR_27="level 27: monster condo";
-public final static String  HUSTR_28="level 28: the spirit world";
-public final static String  HUSTR_29="level 29: the living end";
-public final static String  HUSTR_30="level 30: icon of sin";
-
-public final static String  HUSTR_31="level 31: wolfenstein";
-public final static String  HUSTR_32="level 32: grosse";
-public final static String  HUSTR_33="level 33: betray";
-
-public final static String  PHUSTR_1="level 1: congo";
-public final static String  PHUSTR_2="level 2: well of souls";
-public final static String  PHUSTR_3="level 3: aztec";
-public final static String  PHUSTR_4="level 4: caged";
-public final static String  PHUSTR_5="level 5: ghost town";
-public final static String  PHUSTR_6="level 6: baron's lair";
-public final static String  PHUSTR_7="level 7: caughtyard";
-public final static String  PHUSTR_8="level 8: realm";
-public final static String  PHUSTR_9="level 9: abattoire";
-public final static String  PHUSTR_10="level 10: onslaught";
-public final static String  PHUSTR_11="level 11: hunted";
-
-public final static String  PHUSTR_12="level 12: speed";
-public final static String  PHUSTR_13="level 13: the crypt";
-public final static String  PHUSTR_14="level 14: genesis";
-public final static String  PHUSTR_15="level 15: the twilight";
-public final static String  PHUSTR_16="level 16: the omen";
-public final static String  PHUSTR_17="level 17: compound";
-public final static String  PHUSTR_18="level 18: neurosphere";
-public final static String  PHUSTR_19="level 19: nme";
-public final static String  PHUSTR_20="level 20: the death domain";
-
-public final static String  PHUSTR_21="level 21: slayer";
-public final static String  PHUSTR_22="level 22: impossible mission";
-public final static String  PHUSTR_23="level 23: tombstone";
-public final static String  PHUSTR_24="level 24: the final frontier";
-public final static String  PHUSTR_25="level 25: the temple of darkness";
-public final static String  PHUSTR_26="level 26: bunker";
-public final static String  PHUSTR_27="level 27: anti-christ";
-public final static String  PHUSTR_28="level 28: the sewers";
-public final static String  PHUSTR_29="level 29: odyssey of noises";
-public final static String  PHUSTR_30="level 30: the gateway of hell";
-
-public final static String  PHUSTR_31="level 31: cyberden";
-public final static String  PHUSTR_32="level 32: go 2 it";
-
-public final static String  THUSTR_1="level 1: system control";
-public final static String  THUSTR_2="level 2: human bbq";
-public final static String  THUSTR_3="level 3: power control";
-public final static String  THUSTR_4="level 4: wormhole";
-public final static String  THUSTR_5="level 5: hanger";
-public final static String  THUSTR_6="level 6: open season";
-public final static String  THUSTR_7="level 7: prison";
-public final static String  THUSTR_8="level 8: metal";
-public final static String  THUSTR_9="level 9: stronghold";
-public final static String  THUSTR_10="level 10: redemption";
-public final static String  THUSTR_11="level 11: storage facility";
-
-public final static String  THUSTR_12="level 12: crater";
-public final static String  THUSTR_13="level 13: nukage processing";
-public final static String  THUSTR_14="level 14: steel works";
-public final static String  THUSTR_15="level 15: dead zone";
-public final static String  THUSTR_16="level 16: deepest reaches";
-public final static String  THUSTR_17="level 17: processing area";
-public final static String  THUSTR_18="level 18: mill";
-public final static String  THUSTR_19="level 19: shipping/respawning";
-public final static String  THUSTR_20="level 20: central processing";
-
-public final static String  THUSTR_21="level 21: administration center";
-public final static String  THUSTR_22="level 22: habitat";
-public final static String  THUSTR_23="level 23: lunar mining project";
-public final static String  THUSTR_24="level 24: quarry";
-public final static String  THUSTR_25="level 25: baron's den";
-public final static String  THUSTR_26="level 26: ballistyx";
-public final static String  THUSTR_27="level 27: mount pain";
-public final static String  THUSTR_28="level 28: heck";
-public final static String  THUSTR_29="level 29: river styx";
-public final static String  THUSTR_30="level 30: last call";
-
-public final static String  THUSTR_31="level 31: pharaoh";
-public final static String  THUSTR_32="level 32: caribbean";
 
 public final static String  HUSTR_CHATMACRO1="I'm ready to kick butt!";
 public final static String  HUSTR_CHATMACRO2="I'm OK.";

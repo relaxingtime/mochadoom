@@ -1,0 +1,152 @@
+package config.language.level;
+/*
+    Posibly getting rip of all unnecesary getters here
+ */
+public interface ILanguageLevel {
+    String getHUSTR_E1M1();
+    String getHUSTR_E1M2();
+    String getHUSTR_E1M3();
+    String getHUSTR_E1M4();
+    String getHUSTR_E1M5();
+    String getHUSTR_E1M6();
+    String getHUSTR_E1M7();
+    String getHUSTR_E1M8();
+    String getHUSTR_E1M9();
+
+    String getHUSTR_E2M1();
+    String getHUSTR_E2M2();
+    String getHUSTR_E2M3();
+    String getHUSTR_E2M4();
+    String getHUSTR_E2M5();
+    String getHUSTR_E2M6();
+    String getHUSTR_E2M7();
+    String getHUSTR_E2M8();
+    String getHUSTR_E2M9();
+
+    String getHUSTR_E3M1();
+    String getHUSTR_E3M2();
+    String getHUSTR_E3M3();
+    String getHUSTR_E3M4();
+    String getHUSTR_E3M5();
+    String getHUSTR_E3M6();
+    String getHUSTR_E3M7();
+    String getHUSTR_E3M8();
+    String getHUSTR_E3M9();
+
+    String getHUSTR_E4M1();
+    String getHUSTR_E4M2();
+    String getHUSTR_E4M3();
+    String getHUSTR_E4M4();
+    String getHUSTR_E4M5();
+    String getHUSTR_E4M6();
+    String getHUSTR_E4M7();
+    String getHUSTR_E4M8();
+    String getHUSTR_E4M9();
+
+    String[] getRetailMapNames();
+
+    String getHUSTR_1();
+    String getHUSTR_2();
+    String getHUSTR_3();
+    String getHUSTR_4();
+    String getHUSTR_5();
+    String getHUSTR_6();
+    String getHUSTR_7();
+    String getHUSTR_8();
+    String getHUSTR_9();
+    String getHUSTR_10();
+    String getHUSTR_11();
+    String getHUSTR_12();
+    String getHUSTR_13();
+    String getHUSTR_14();
+    String getHUSTR_15();
+    String getHUSTR_16();
+    String getHUSTR_17();
+    String getHUSTR_18();
+    String getHUSTR_19();
+    String getHUSTR_20();
+    String getHUSTR_21();
+    String getHUSTR_22();
+    String getHUSTR_23();
+    String getHUSTR_24();
+    String getHUSTR_25();
+    String getHUSTR_26();
+    String getHUSTR_27();
+    String getHUSTR_28();
+    String getHUSTR_29();
+    String getHUSTR_30();
+    String getHUSTR_31();
+    String getHUSTR_32();
+    String getHUSTR_33();
+
+    String[] getDoom2MapNames();
+    String getPHUSTR_1();
+    String getPHUSTR_2();
+    String getPHUSTR_3();
+    String getPHUSTR_4();
+    String getPHUSTR_5();
+    String getPHUSTR_6();
+    String getPHUSTR_7();
+    String getPHUSTR_8();
+    String getPHUSTR_9();
+    String getPHUSTR_10();
+    String getPHUSTR_11();
+    String getPHUSTR_12();
+    String getPHUSTR_13();
+    String getPHUSTR_14();
+    String getPHUSTR_15();
+    String getPHUSTR_16();
+    String getPHUSTR_17();
+    String getPHUSTR_18();
+    String getPHUSTR_19();
+    String getPHUSTR_20();
+    String getPHUSTR_21();
+    String getPHUSTR_22();
+    String getPHUSTR_23();
+    String getPHUSTR_24();
+    String getPHUSTR_25();
+    String getPHUSTR_26();
+    String getPHUSTR_27();
+    String getPHUSTR_28();
+    String getPHUSTR_29();
+    String getPHUSTR_30();
+    String getPHUSTR_31();
+    String getPHUSTR_32();
+
+    String[] getPlutoniaMapNames();
+    String getTHUSTR_1();
+    String getTHUSTR_2();
+    String getTHUSTR_3();
+    String getTHUSTR_4();
+    String getTHUSTR_5();
+    String getTHUSTR_6();
+    String getTHUSTR_7();
+    String getTHUSTR_8();
+    String getTHUSTR_9();
+    String getTHUSTR_10();
+    String getTHUSTR_11();
+    String getTHUSTR_12();
+    String getTHUSTR_13();
+    String getTHUSTR_14();
+    String getTHUSTR_15();
+    String getTHUSTR_16();
+    String getTHUSTR_17();
+    String getTHUSTR_18();
+    String getTHUSTR_19();
+    String getTHUSTR_20();
+    String getTHUSTR_21();
+    String getTHUSTR_22();
+    String getTHUSTR_23();
+    String getTHUSTR_24();
+    String getTHUSTR_25();
+    String getTHUSTR_26();
+    String getTHUSTR_27();
+    String getTHUSTR_28();
+    String getTHUSTR_29();
+    String getTHUSTR_30();
+    String getTHUSTR_31();
+    String getTHUSTR_32();
+
+    String[] getTntMapNames();
+
+}

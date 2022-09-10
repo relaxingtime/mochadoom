@@ -26,7 +26,7 @@ import doom.SourceCode.D_Main;
 import static doom.SourceCode.D_Main.*;
 import doom.SourceCode.G_Game;
 import static doom.SourceCode.G_Game.*;
-import static doom.englsh.*;
+import static config.language.englsh.*;
 import static doom.evtype_t.*;
 import static doom.gameaction_t.*;
 import f.EndLevel;
@@ -616,6 +616,15 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
         wadfiles[numwadfiles] = file;
     }
 
+    /**
+     * FirstVersion Specify Language in cVar
+     */
+    public void IdentifyLanguage(){
+        if(cVarManager.present(CommandVariable.LANGUAGE)){
+            System.out.println("-language specified. Will be used with priority.\n");
+            LanguageResolver.tryConfigureLanguageByString(cVarManager.get(CommandVariable.LANGUAGE, String.class, 0).get());
+        }
+    }
 
     /**
      * IdentifyVersion
@@ -625,11 +634,6 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
      */
     public final String IdentifyVersion() {
         String doomwaddir;
-
-        if(cVarManager.present(CommandVariable.LANGUAGE)){
-            System.out.println("-language specified. Will be used with priority.\n");
-            LanguageResolver.tryConfigureLanguageByString(cVarManager.get(CommandVariable.LANGUAGE, String.class, 0).get());
-        }
 
         // First, check for -iwad parameter.
         // If valid, then it trumps all others.
@@ -2510,6 +2514,9 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
     public final IDoomSystem doomSystem;
     public final BppMode bppMode;
 
+    public final LanguageResolver languageResolver;
+
+
     /**
      * Since this is a fully OO implementation, we need a way to create
      * the instances of the Refresh daemon, the Playloop, the Wadloader 
@@ -2535,6 +2542,8 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
         // Init objects
         this.cVarManager = Engine.getCVM();
 
+        readCVars();
+
         // Prepare events array with event instances
         Arrays.fill(events, event_t.EMPTY_EVENT);
 
@@ -2559,8 +2568,9 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
         
         // Random number generator, but we can have others too.
         this.random = new DelegateRandom();
-        System.out.print(String.format("M_Random: Using %s.\n", random.getClass().getSimpleName()));
-        
+        System.out.printf("M_Random: Using %s.\n", random.getClass().getSimpleName());
+
+        this.languageResolver = new LanguageResolver();
         // Sound can be left until later, in Start
         this.wadLoader = new WadLoader(this.doomSystem); // The wadloader is a "weak" status holder.
         
@@ -2586,8 +2596,7 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
         // Instantiating EndLevel, Finale
         this.endLevel = new EndLevel<>(this);
         this.finale = selectFinale();
-        
-        readCVars();
+
         System.out.print("W_Init: Init WADfiles.\n");
         try {
             wadLoader.InitMultipleFiles(wadfiles);
@@ -2794,6 +2803,8 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
         
         final StringBuffer file = new StringBuffer();
         final String iwadfilename = IdentifyVersion();
+        IdentifyLanguage();
+        language = LanguageResolver.getLanguage();
         nomonsters = cVarManager.bool(CommandVariable.NOMONSTERS);
         respawnparm = cVarManager.bool(CommandVariable.RESPAWN);
         fastparm = cVarManager.bool(CommandVariable.FAST);

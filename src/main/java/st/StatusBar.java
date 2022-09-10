@@ -34,7 +34,7 @@ import doom.SourceCode;
 import doom.SourceCode.CauseOfDesyncProbability;
 import doom.SourceCode.ST_Stuff;
 import static doom.SourceCode.ST_Stuff.ST_Responder;
-import static doom.englsh.*;
+import static config.language.englsh.*;
 import doom.event_t;
 import doom.evtype_t;
 import static doom.items.*;

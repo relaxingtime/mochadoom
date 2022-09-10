@@ -16,7 +16,7 @@ import defines.*;
 import doom.DoomMain;
 import doom.SourceCode.F_Finale;
 import static doom.SourceCode.F_Finale.F_Responder;
-import static doom.englsh.*;
+import static config.language.englsh.*;
 import doom.event_t;
 import doom.evtype_t;
 import doom.gameaction_t;
@@ -673,6 +673,10 @@ public class Finale<T> {
 
 	}
 
+	/**
+	 * TODO: Decouple HU a little bit.
+	 * @param DOOM
+	 */
 	public Finale(DoomMain<T, ?> DOOM) {
 		this.DOOM = DOOM;
 		hu_font = DOOM.headsUp.getHUFonts();

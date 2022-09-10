@@ -17,18 +17,13 @@
  */
 package p.Actions;
 
+import config.LanguageResolver;
 import data.sounds;
 import defines.card_t;
 import doom.SourceCode;
 import doom.SourceCode.P_Doors;
 import static doom.SourceCode.P_Doors.P_SpawnDoorCloseIn30;
 import static doom.SourceCode.P_Doors.P_SpawnDoorRaiseIn5Mins;
-import static doom.englsh.PD_BLUEK;
-import static doom.englsh.PD_BLUEO;
-import static doom.englsh.PD_REDK;
-import static doom.englsh.PD_REDO;
-import static doom.englsh.PD_YELLOWK;
-import static doom.englsh.PD_YELLOWO;
 import doom.player_t;
 import doom.thinker_t;
 import static m.fixed_t.FRACUNIT;
@@ -176,7 +171,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
                 /*         if ( p==null )
              return false; */
                 if (!p.cards[card_t.it_bluecard.ordinal()] && !p.cards[card_t.it_blueskull.ordinal()]) {
-                    p.message = PD_BLUEO;
+                    p.message = LanguageResolver.getLanguageKeys().getPdBlueO();
                     StartSound(null, sounds.sfxenum_t.sfx_oof);
                     return false;
                 }
@@ -187,7 +182,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
                 /*        if ( p==null )
              return false; */
                 if (!p.cards[card_t.it_redcard.ordinal()] && !p.cards[card_t.it_redskull.ordinal()]) {
-                    p.message = PD_REDO;
+                    p.message = LanguageResolver.getLanguageKeys().getPdRedO();
                     StartSound(null, sounds.sfxenum_t.sfx_oof);
                     return false;
                 }
@@ -199,7 +194,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
              return false; */
                 if (!p.cards[card_t.it_yellowcard.ordinal()]
                     && !p.cards[card_t.it_yellowskull.ordinal()]) {
-                    p.message = PD_YELLOWO;
+                    p.message = LanguageResolver.getLanguageKeys().getPdYellowO();;
                     StartSound(null, sounds.sfxenum_t.sfx_oof);
                     return false;
                 }
@@ -304,7 +299,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
                 }
 
                 if (!player.cards[card_t.it_bluecard.ordinal()] && !player.cards[card_t.it_blueskull.ordinal()]) {
-                    player.message = PD_BLUEK;
+                    player.message = LanguageResolver.getLanguageKeys().getPdBlueK();
                     StartSound(null, sounds.sfxenum_t.sfx_oof);
                     return;
                 }
@@ -317,7 +312,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
                 }
 
                 if (!player.cards[card_t.it_yellowcard.ordinal()] && !player.cards[card_t.it_yellowskull.ordinal()]) {
-                    player.message = PD_YELLOWK;
+                    player.message = LanguageResolver.getLanguageKeys().getPdYellowK();
                     StartSound(null, sounds.sfxenum_t.sfx_oof);
                     return;
                 }
@@ -330,7 +325,7 @@ public interface ActionsDoors extends ActionsMoveEvents, ActionsUseEvents {
                 }
 
                 if (!player.cards[card_t.it_redcard.ordinal()] && !player.cards[card_t.it_redskull.ordinal()]) {
-                    player.message = PD_REDK;
+                    player.message = LanguageResolver.getLanguageKeys().getPdRedK();
                     StartSound(null, sounds.sfxenum_t.sfx_oof);
                     return;
                 }

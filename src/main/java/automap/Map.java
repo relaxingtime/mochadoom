@@ -176,7 +176,7 @@ import static data.Tables.*;
 import doom.DoomMain;
 import doom.SourceCode.AM_Map;
 import static doom.SourceCode.AM_Map.AM_Responder;
-import static doom.englsh.*;
+import static config.language.englsh.*;
 import doom.event_t;
 import doom.evtype_t;
 import doom.player_t;

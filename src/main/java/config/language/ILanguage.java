@@ -1,8 +1,8 @@
-package config;
+package config.language;
 
 import defines.Language_t;
 
-public interface ILanguageResolver {
+public interface ILanguage {
 
     Language_t getLanguage();
 

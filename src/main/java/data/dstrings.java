@@ -49,7 +49,7 @@ package data;
 // 
 //-----------------------------------------------------------------------------
 
-import static doom.englsh.*;
+import static config.language.englsh.*;
 
 public class dstrings{
 

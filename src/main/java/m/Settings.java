@@ -23,7 +23,7 @@ import static doom.ConfigBase.FILE_DOOM;
 import static doom.ConfigBase.FILE_MOCHADOOM;
 import doom.ConfigBase.Files;
 import doom.ConfigManager;
-import static doom.englsh.*;
+import static config.language.englsh.*;
 import static g.Signals.ScanCode.*;
 import java.util.Arrays;
 import java.util.EnumSet;

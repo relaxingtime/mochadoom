@@ -27,7 +27,7 @@ import doom.SourceCode.P_Map;
 import static doom.SourceCode.P_Map.PIT_CheckThing;
 import static doom.SourceCode.P_Map.PIT_StompThing;
 import doom.SourceCode.fixed_t;
-import static doom.englsh.*;
+import static config.language.englsh.*;
 import doom.player_t;
 import doom.weapontype_t;
 import m.Settings;
