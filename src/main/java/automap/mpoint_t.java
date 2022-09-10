@@ -19,7 +19,7 @@ public class mpoint_t
       this.y = (int) y;
   }
   
-  public mpoint_t(){
+  mpoint_t(){
       this.x=0;
       this.y=0;
   }

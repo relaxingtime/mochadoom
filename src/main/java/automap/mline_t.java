@@ -2,22 +2,22 @@ package automap;
 
 /** used only in automap */
 
-public class mline_t
+class mline_t
 {
-    public mline_t(){
+    mline_t(){
         this(0,0,0,0);
     }
     
-    public int ax,ay,bx,by;
+    int ax,ay,bx,by;
 
-    public mline_t(int ax, int ay, int bx, int by) {
+    mline_t(int ax, int ay, int bx, int by) {
         this.ax = ax;
         this.ay = ay;
         this.bx = bx;
         this.by = by;
     }
     
-    public mline_t(double ax, double ay, double bx, double by) {
+    mline_t(double ax, double ay, double bx, double by) {
         this.ax = (int) ax;
         this.ay = (int) ay;
         this.bx = (int) bx;

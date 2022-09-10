@@ -38,6 +38,9 @@ public enum CommandVariable {
     MAP('+', MapFormat.class),
     FILE(String[].class),
     IWAD(String.class),
+    LANGUAGE(String.class),
+
+    IWAD_PATH(String.class),
     NOVERT(ForbidFormat.class),
     NOVOLATILEIMAGE(ForbidFormat.class),
 

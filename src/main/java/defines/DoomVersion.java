@@ -17,6 +17,7 @@
 
 package defines;
 
+import config.LanguageResolver;
 import doom.DoomMain;
 import java.util.logging.Level;
 import mochadoom.Loggers;
@@ -35,7 +36,8 @@ public enum DoomVersion {
     DOOM1_WAD("doom1.wad"),
     FREEDM_WAD("freedm.wad"),
     FREEDOOM1_WAD("freedoom1.wad"),
-    FREEDOOM2_WAD("freedoom2.wad");
+    FREEDOOM2_WAD("freedoom2.wad"),
+    LOTSOFMONSTERS_WAD("lotsofmonsters.wad");
     
     public final String wadFileName;
 
@@ -50,14 +52,16 @@ public enum DoomVersion {
 	 */
     public static String tryAllWads(final DoomMain<?, ?> DOOM, final String doomwaddir) {
         for (DoomVersion v: values()) {
-            final String vFullPath = doomwaddir + '/' + v.wadFileName;
+            int lastSeparatorIndex = doomwaddir.lastIndexOf(System.getProperty("file.separator"));
+
+            String separator = (lastSeparatorIndex != doomwaddir.length()-1)? System.getProperty("file.separator") : "";
+
+            final String vFullPath = doomwaddir + separator + v.wadFileName;
             if (testReadAccess(vFullPath)) {
                 DOOM.setGameMode(GameMode.forVersion(v));
                 if (v == DOOM2F_WAD) {
-                    // C'est ridicule!
-                    // Let's handle languages in config files, okay?
-                    DOOM.language = Language_t.french;
-                    System.out.println("French version\n");
+                    DOOM.language = LanguageResolver.getLanguage();
+                    System.out.println("Doom configured language +" + DOOM.language.toString() + "\n");
                 }
                 
                 return vFullPath;

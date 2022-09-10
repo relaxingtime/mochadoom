@@ -5,6 +5,10 @@ public enum Language_t {
     english,
     french,
     german,
-    unknown
+    unknown;
+
+    public static Language_t getLanguage(String language) throws IllegalArgumentException{
+        return Language_t.valueOf(language);
     }
+}
 

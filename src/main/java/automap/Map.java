@@ -200,80 +200,26 @@ import static v.renderers.DoomScreen.*;
 public class Map<T, V> implements IAutoMap<T, V> {
 
     /////////////////// Status objects ///////////////////
-    final DoomMain<T, V> DOOM;
+    private final DoomMain<T, V> DOOM;
 
-    /**
-     * Configurable colors - now an enum
-     *  - Good Sign 2017/04/05
-     * 
-     * Use colormap-specific colors to support extended modes.
-     * Moved hardcoding in here. Potentially configurable.
-     */
-    enum Color {
-        CLOSE_TO_BLACK(1, (byte) 246),
-        REDS(16, (byte) 176 /*(256 - 5 * 16)*/),
-        BLUES(8, (byte) 200 /*(256 - 4 * 16 + 8)*/),
-        GREENS(16, (byte) 112 /*(7 * 16)*/),
-        GRAYS(16, (byte) 96 /*(6 * 16)*/),
-        BROWNS(16, (byte) 64 /*(4 * 16)*/),
-        YELLOWS(8, (byte) 160 /*(256 - 32)*/),
-        BLACK(1, (byte) 0),
-        WHITE(1, (byte) 4),
-        GRAYS_DARKER_25(13, (byte)(GRAYS.value + 4)),
-        DARK_GREYS(8, (byte)(GRAYS.value + GRAYS.range / 2)),
-        DARK_REDS(8, (byte)(REDS.value + REDS.range / 2));
-
-        final static int NUM_LITES = 8;
-        final static int[] LITE_LEVELS_FULL_RANGE = { 0, 4, 7, 10, 12, 14, 15, 15 };
-        final static int[] LITE_LEVELS_HALF_RANGE = { 0, 2, 3, 5, 6, 6, 7, 7 };
-        final byte[] liteBlock;
-        final byte value;
-        final int range;
-
-        Color(int range, byte value) {
-            this.range = range;
-            this.value = value;
-            if (range >= NUM_LITES) {
-                this.liteBlock = new byte[NUM_LITES];
-            } else {
-                this.liteBlock = null;
-            }
-        }
-        
-        static {
-            for (Color c: values()) {
-                switch(c.range) {
-                    case 16:
-                        for (int i = 0; i < NUM_LITES; ++i) {
-                            c.liteBlock[i] = (byte) (c.value + LITE_LEVELS_FULL_RANGE[i]);
-                        }
-                        break;
-                    case 8:
-                        for (int i = 0; i < LITE_LEVELS_HALF_RANGE.length; ++i) {
-                            c.liteBlock[i] = (byte) (c.value + LITE_LEVELS_HALF_RANGE[i]);
-                        }
-                }
-            }
-        }
-    }
     // For use if I do walls with outsides/insides
 
     // Automap colors
-    final static Color 
-        BACKGROUND = Color.BLACK,
-        YOURCOLORS = Color.WHITE,
-        WALLCOLORS = Color.REDS,
-        TELECOLORS = Color.DARK_REDS,
-        TSWALLCOLORS = Color.GRAYS,
-        FDWALLCOLORS = Color.BROWNS,
-        CDWALLCOLORS = Color.YELLOWS,
-        THINGCOLORS = Color.GREENS,
-        SECRETWALLCOLORS = Color.REDS,
-        GRIDCOLORS = Color.DARK_GREYS,
-        MAPPOWERUPSHOWNCOLORS = Color.GRAYS,
-        CROSSHAIRCOLORS = Color.GRAYS;
+    private final static MapColor.Color
+        BACKGROUND = MapColor.Color.BLACK,
+        YOURCOLORS = MapColor.Color.WHITE,
+        WALLCOLORS = MapColor.Color.REDS,
+        TELECOLORS = MapColor.Color.DARK_REDS,
+        TSWALLCOLORS = MapColor.Color.GRAYS,
+        FDWALLCOLORS = MapColor.Color.BROWNS,
+        CDWALLCOLORS = MapColor.Color.YELLOWS,
+        THINGCOLORS = MapColor.Color.GREENS,
+        SECRETWALLCOLORS = MapColor.Color.REDS,
+        GRIDCOLORS = MapColor.Color.DARK_GREYS,
+        MAPPOWERUPSHOWNCOLORS = MapColor.Color.GRAYS,
+        CROSSHAIRCOLORS = MapColor.Color.GRAYS;
 
-    final static EnumSet<Color> GENERATE_LITE_LEVELS_FOR = EnumSet.of(
+    private final static EnumSet<MapColor.Color> GENERATE_LITE_LEVELS_FOR = EnumSet.of(
         TELECOLORS,
         WALLCOLORS,
         FDWALLCOLORS,
@@ -284,11 +230,11 @@ public class Map<T, V> implements IAutoMap<T, V> {
         THINGCOLORS
     );
     
-    final static Color THEIR_COLORS[] = {
-        Color.GREENS,
-        Color.GRAYS,
-        Color.BROWNS,
-        Color.REDS
+    private final static MapColor.Color THEIR_COLORS[] = {
+        MapColor.Color.GREENS,
+        MapColor.Color.GRAYS,
+        MapColor.Color.BROWNS,
+        MapColor.Color.REDS
     };
     
     // drawing stuff
@@ -322,8 +268,8 @@ public class Map<T, V> implements IAutoMap<T, V> {
     // pulls out to 0.5x in 1 second
     public static final int M_ZOOMOUT = ((int) (FRACUNIT / 1.02));
     
-    final EnumMap<Color, V> fixedColorSources = new EnumMap<>(Color.class);
-    final EnumMap<Color, V> litedColorSources = new EnumMap<>(Color.class);
+    private final EnumMap<MapColor.Color, V> fixedColorSources = new EnumMap<>(MapColor.Color.class);
+    private final EnumMap<MapColor.Color, V> litedColorSources = new EnumMap<>(MapColor.Color.class);
 
     public Map(final DoomMain<T, V> DOOM) {
         // Some initializing...
@@ -350,12 +296,12 @@ public class Map<T, V> implements IAutoMap<T, V> {
                 }
             });
         
-        Arrays.stream(Color.values())
+        Arrays.stream(MapColor.Color.values())
             .forEach((c) -> {
                 V converted = DOOM.graphicSystem.convertPalettedBlock(c.value);
                 @SuppressWarnings("unchecked")
-                V extended = (V) Array.newInstance(converted.getClass().getComponentType(), Color.NUM_LITES);
-                memset(extended, 0, Color.NUM_LITES, converted, 0, 1);
+                V extended = (V) Array.newInstance(converted.getClass().getComponentType(), MapColor.Color.NUM_LITES);
+                memset(extended, 0, MapColor.Color.NUM_LITES, converted, 0, 1);
                 fixedColorSources.put(c, extended);
             });
     }
@@ -656,8 +602,8 @@ public class Map<T, V> implements IAutoMap<T, V> {
         scale_ftom = FixedDiv(FRACUNIT, scale_mtof);
 
         plotter.setThickness(
-            Math.min(MTOF(FRACUNIT), Color.NUM_LITES),
-            Math.min(MTOF(FRACUNIT), Color.NUM_LITES)
+            Math.min(MTOF(FRACUNIT), MapColor.Color.NUM_LITES),
+            Math.min(MTOF(FRACUNIT), MapColor.Color.NUM_LITES)
         );
     }
 
@@ -1047,7 +993,7 @@ public class Map<T, V> implements IAutoMap<T, V> {
         // no more additional lightlevelcnt - Good Sign 2017/04/05
         // no more even lightlev and changed to array access - Good Sign 2017/04/08
         if (amclock % 6 == 0) {
-            final int sourceLength = Color.NUM_LITES;
+            final int sourceLength = MapColor.Color.NUM_LITES;
             final V intermeditate = DOOM.graphicSystem.convertPalettedBlock((byte) 0);
             litedColorSources.forEach((c, source) -> {
                 memcpy(source, sourceLength - 1, intermeditate, 0, 1);
@@ -1434,11 +1380,11 @@ public class Map<T, V> implements IAutoMap<T, V> {
         if (!DOOM.netgame) {
             if (cheating != 0)
                 drawLineCharacter(cheat_player_arrow, NUMCHEATPLYRLINES, 0,
-                    toBAMIndex(plr.mo.angle), fixedColorSources.get(Color.WHITE), plr.mo.x,
+                    toBAMIndex(plr.mo.angle), fixedColorSources.get(MapColor.Color.WHITE), plr.mo.x,
                     plr.mo.y);
             else
                 drawLineCharacter(player_arrow, NUMPLYRLINES, 0,
-                    toBAMIndex(plr.mo.angle), fixedColorSources.get(Color.WHITE), plr.mo.x,
+                    toBAMIndex(plr.mo.angle), fixedColorSources.get(MapColor.Color.WHITE), plr.mo.x,
                     plr.mo.y);
             return;
         }
@@ -1454,7 +1400,7 @@ public class Map<T, V> implements IAutoMap<T, V> {
                 continue;
 
             if (p.powers[pw_invisibility] != 0)
-                colorSource = fixedColorSources.get(Color.CLOSE_TO_BLACK);
+                colorSource = fixedColorSources.get(MapColor.Color.CLOSE_TO_BLACK);
             else
                 colorSource = fixedColorSources.get(THEIR_COLORS[their_color]);
 
@@ -1463,7 +1409,7 @@ public class Map<T, V> implements IAutoMap<T, V> {
 
     }
 
-    final void drawThings(Color colors, int colorrange) {
+    final void drawThings(MapColor.Color colors, int colorrange) {
         mobj_t t;
         V colorSource = litedColorSources.get(colors); // Ain't gonna change
 

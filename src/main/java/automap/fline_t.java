@@ -25,7 +25,7 @@ public class fline_t
         // TODO Auto-generated constructor stub
     }
 
-    public int ax,ay,bx,by;
+    int ax,ay,bx,by;
     /*
     public fpoint_t a, b;
 

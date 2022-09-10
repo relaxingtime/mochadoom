@@ -2,13 +2,13 @@ package automap;
 
 public class fpoint_t
 {
-    int x, y;
+    private int x, y;
     
     public fpoint_t(){
         this(0,0);
     }
     
-    public fpoint_t(int x, int y){
+    private fpoint_t(int x, int y){
         this.x=x;
         this.y=y;
     }

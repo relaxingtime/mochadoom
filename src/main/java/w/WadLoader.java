@@ -134,8 +134,7 @@ public class WadLoader implements IWadLoader {
 	String reloadname;
     /**
      * This is where lumps are actually read + loaded from a file.
-     * 
-     * @param filename
+     *
      * @throws Exception
      */
 
@@ -314,7 +313,7 @@ public class WadLoader implements IWadLoader {
 	 *  Of course, they may be way off with deliberately malformed files etc.
 	 *  
 	 * @param header
-	 * @param lumpinfo2
+	 * @param lumpinfo
 	 * @return
 	 */
 	
@@ -428,8 +427,9 @@ public class WadLoader implements IWadLoader {
 			}
 		}
 
-		if (numlumps == 0)
+		if (numlumps == 0) {
 			I.Error("W_InitFiles: no files found");
+		}
 
 		CoalesceMarkedResource("S_START", "S_END", li_namespace.ns_sprites);
 		CoalesceMarkedResource("F_START", "F_END", li_namespace.ns_flats);

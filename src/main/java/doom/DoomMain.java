@@ -3,6 +3,8 @@ package doom;
 import automap.IAutoMap;
 import static data.Defines.*;
 import static data.Limits.*;
+
+import config.LanguageResolver;
 import data.Tables;
 import static data.Tables.*;
 import data.dstrings;
@@ -623,8 +625,11 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
      */
     public final String IdentifyVersion() {
         String doomwaddir;
-        // By default.
-        language = Language_t.english;
+
+        if(cVarManager.present(CommandVariable.LANGUAGE)){
+            System.out.println("-language specified. Will be used with priority.\n");
+            LanguageResolver.tryConfigureLanguageByString(cVarManager.get(CommandVariable.LANGUAGE, String.class, 0).get());
+        }
 
         // First, check for -iwad parameter.
         // If valid, then it trumps all others.
@@ -632,9 +637,11 @@ public class DoomMain<T, V> extends DoomStatus<T, V> implements IDoomGameNetwork
             System.out.println("-iwad specified. Will be used with priority\n");
             // It might be quoted.
             final String test = C2JUtils.unquoteIfQuoted(cVarManager.get(CommandVariable.IWAD, String.class, 0).get(), '"');
+            System.out.printf("-iwad %s\n", test);
             final String separator = System.getProperty("file.separator");
             final String iwad = test.substring(1 + test.lastIndexOf(separator));
             doomwaddir = test.substring(0, 1 + test.lastIndexOf(separator));
+            System.out.printf("doomwaddir %s\n", iwad);
             final GameMode attempt = DoomVersion.tryOnlyOne(iwad, doomwaddir);
             // Note: at this point we can't distinguish between "doom" retail
             // and "doom" ultimate yet.
