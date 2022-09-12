@@ -2,12 +2,12 @@ package config.language.key;
 
 public class SpanishKey implements ILanguageKey {
 
-    private final static String PD_BLUEO = "Necesitas una llave azul para activar este objeto";
-    private final static String PD_REDO = "Necesitas una llave roja para activar este objeto";
-    private final static String PD_YELLOWO = "Necesitas una llave amarilla para activar este objeto";
-    private final static String PD_BLUEK = "Necesitas una llave azul para abrir esta puerta";
-    private final static String PD_REDK = "Necesitas una llave roja para abrir esta puerta";
-    private final static String PD_YELLOWK = "Necesitas una llave amarilla para abrir esta puerta";
+    private final static String PD_BLUEO = "Llave azul necesaria para activar este objeto";
+    private final static String PD_REDO = "Llave roja necesaria para activar este objeto";
+    private final static String PD_YELLOWO = "Llave amarilla necesaria para activar este objeto";
+    private final static String PD_BLUEK = "Llave azul necesaria para abrir esta puerta";
+    private final static String PD_REDK = "Llave roja necesaria para abrir esta puerta";
+    private final static String PD_YELLOWK = "Llave amarilla necesaria para abrir esta puerta";
 
     @Override
     public String getPdBlueO() {

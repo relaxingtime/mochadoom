@@ -5,6 +5,7 @@ import config.language.key.ILanguageKey;
 import config.language.key.SpanishKey;
 import config.language.level.EnglishLevel;
 import config.language.level.ILanguageLevel;
+import config.language.level.SpanishLevel;
 import defines.Language_t;
 
 import java.util.HashMap;
@@ -37,7 +38,7 @@ public class LanguageResolver{
 
     private static void fillLanguageMap() {
         languageLevelMap.put(Language_t.english, new EnglishLevel());
-        languageLevelMap.put(Language_t.spanish, new EnglishLevel());
+        languageLevelMap.put(Language_t.spanish, new SpanishLevel());
     }
 
     public static Language_t getLanguage() {
@@ -86,6 +87,9 @@ public class LanguageResolver{
 
             keysLanguage = Optional.ofNullable(languageKeyNeededMsg.get(language))
                     .orElseGet(() -> languageKeyNeededMsg.get(Language_t.english));
+
+            //Backward compatible.
+            language = Language_t.english;
 
             return true;
         }catch (IllegalArgumentException ex){
