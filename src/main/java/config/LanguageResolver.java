@@ -6,6 +6,9 @@ import config.language.key.SpanishKey;
 import config.language.level.EnglishLevel;
 import config.language.level.ILanguageLevel;
 import config.language.level.SpanishLevel;
+import config.language.touch.EnglishTouchThings;
+import config.language.touch.ILanguageTouchThings;
+import config.language.touch.SpanishTouchThings;
 import defines.Language_t;
 
 import java.util.HashMap;
@@ -21,14 +24,18 @@ public class LanguageResolver{
     private static Language_t language = Language_t.english;
     private static ILanguageLevel levelsLanguage;
     private static ILanguageKey keysLanguage;
+    private static ILanguageTouchThings touchThingsLanguage;
 
     private static final Map<Language_t, ILanguageKey> languageKeyNeededMsg = new HashMap<>();
     //Too much memory?
     private static final Map<Language_t, ILanguageLevel> languageLevelMap = new HashMap<>();
 
+    private static final Map<Language_t, ILanguageTouchThings> languageTouchThings = new HashMap<>();
+
     static{
         fillLanguageMap();
         fillLanguageKey();
+        fillLanguageTouchThings();
     }
 
     private static void fillLanguageKey() {
@@ -41,6 +48,11 @@ public class LanguageResolver{
         languageLevelMap.put(Language_t.spanish, new SpanishLevel());
     }
 
+    private static void fillLanguageTouchThings(){
+        languageTouchThings.put(Language_t.english, new EnglishTouchThings());
+        languageTouchThings.put(Language_t.spanish, new SpanishTouchThings());
+    }
+
     public static Language_t getLanguage() {
         return language;
     }
@@ -51,7 +63,9 @@ public class LanguageResolver{
     public static ILanguageLevel getLanguageLevel(){
         return levelsLanguage;
     }
-
+    public static ILanguageTouchThings getTouchThingsLanguage() {
+        return touchThingsLanguage;
+    }
     /**
      * Removing this static method seems dificult...
      * See ActionsDoors Interface...
@@ -88,6 +102,8 @@ public class LanguageResolver{
             keysLanguage = Optional.ofNullable(languageKeyNeededMsg.get(language))
                     .orElseGet(() -> languageKeyNeededMsg.get(Language_t.english));
 
+            touchThingsLanguage = Optional.ofNullable(languageTouchThings.get(language))
+                    .orElseGet(() -> languageTouchThings.get(Language_t.english));
             //Backward compatible.
             language = Language_t.english;
 

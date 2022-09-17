@@ -77,51 +77,6 @@ public final static String  GAMMALVL4="Gamma correction level 4";
 public final static String  EMPTYSTRING="empty slot";
 
 //
-//  P_inter.C
-//
-public final static String  GOTARMOR="Picked up the armor.";
-public final static String  GOTMEGA="Picked up the MegaArmor!";
-public final static String  GOTHTHBONUS="Picked up a health bonus.";
-public final static String  GOTARMBONUS="Picked up an armor bonus.";
-public final static String  GOTSTIM="Picked up a stimpack.";
-public final static String  GOTMEDINEED="Picked up a medikit that you REALLY need!";
-public final static String  GOTMEDIKIT="Picked up a medikit.";
-public final static String  GOTSUPER="Supercharge!";
-
-public final static String  GOTBLUECARD="Picked up a blue keycard.";
-public final static String  GOTYELWCARD="Picked up a yellow keycard.";
-public final static String  GOTREDCARD="Picked up a red keycard.";
-public final static String  GOTBLUESKUL="Picked up a blue skull key.";
-public final static String  GOTYELWSKUL="Picked up a yellow skull key.";
-public final static String  GOTREDSKULL="Picked up a red skull key.";
-
-public final static String  GOTINVUL="Invulnerability!";
-public final static String  GOTBERSERK="Berserk!";
-public final static String  GOTINVIS="Partial Invisibility";
-public final static String  GOTSUIT="Radiation Shielding Suit";
-public final static String  GOTMAP="Computer Area Map";
-public final static String  GOTVISOR="Light Amplification Visor";
-public final static String  GOTMSPHERE="MegaSphere!";
-
-public final static String  GOTCLIP="Picked up a clip.";
-public final static String  GOTCLIPBOX="Picked up a box of bullets.";
-public final static String  GOTROCKET="Picked up a rocket.";
-public final static String  GOTROCKBOX="Picked up a box of rockets.";
-public final static String  GOTCELL="Picked up an energy cell.";
-public final static String  GOTCELLBOX="Picked up an energy cell pack.";
-public final static String  GOTSHELLS="Picked up 4 shotgun shells.";
-public final static String  GOTSHELLBOX="Picked up a box of shotgun shells.";
-public final static String  GOTBACKPACK="Picked up a backpack full of ammo!";
-
-public final static String  GOTBFG9000="You got the BFG9000!  Oh, yes.";
-public final static String  GOTCHAINGUN="You got the chaingun!";
-public final static String  GOTCHAINSAW="A chainsaw!  Find some meat!";
-public final static String  GOTLAUNCHER="You got the rocket launcher!";
-public final static String  GOTPLASMA="You got the plasma gun!";
-public final static String  GOTSHOTGUN="You got the shotgun!";
-public final static String  GOTSHOTGUN2="You got the super shotgun!";
-
-//
 //  G_game.C
 //
 public final static String  GGSAVED="game saved.";

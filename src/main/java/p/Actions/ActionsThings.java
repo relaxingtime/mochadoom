@@ -18,6 +18,9 @@
 package p.Actions;
 
 import static data.Defines.*;
+
+import config.LanguageResolver;
+import config.language.touch.ILanguageTouchThings;
 import data.mobjtype_t;
 import data.sounds.sfxenum_t;
 import defines.ammotype_t;
@@ -162,7 +165,7 @@ public interface ActionsThings extends ActionTrait {
         if (toucher.health <= 0) {
             return;
         }
-
+        ILanguageTouchThings thouchThingsMessage = LanguageResolver.getTouchThingsLanguage();
         // Identify by sprite.
         switch (special.mobj_sprite) {
             // armor
@@ -170,14 +173,14 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GiveArmor(1)) {
                     return;
                 }
-                player.message = GOTARMOR;
+                player.message = thouchThingsMessage.getGOTARMOR();
                 break;
 
             case SPR_ARM2:
                 if (!player.GiveArmor(2)) {
                     return;
                 }
-                player.message = GOTMEGA;
+                player.message = thouchThingsMessage.getGOTMEGA();
                 break;
 
             // bonus items
@@ -187,7 +190,7 @@ public interface ActionsThings extends ActionTrait {
                     player.health[0] = 200;
                 }
                 player.mo.health = player.health[0];
-                player.message = GOTHTHBONUS;
+                player.message = thouchThingsMessage.getGOTHTHBONUS();
                 break;
 
             case SPR_BON2:
@@ -198,7 +201,7 @@ public interface ActionsThings extends ActionTrait {
                 if (player.armortype == 0) {
                     player.armortype = 1;
                 }
-                player.message = GOTARMBONUS;
+                player.message = thouchThingsMessage.getGOTARMBONUS();
                 break;
 
             case SPR_SOUL:
@@ -207,7 +210,7 @@ public interface ActionsThings extends ActionTrait {
                     player.health[0] = 200;
                 }
                 player.mo.health = player.health[0];
-                player.message = GOTSUPER;
+                player.message = thouchThingsMessage.getGOTSUPER();
                 sound = sfxenum_t.sfx_getpow;
                 break;
 
@@ -218,7 +221,7 @@ public interface ActionsThings extends ActionTrait {
                 player.health[0] = 200;
                 player.mo.health = player.health[0];
                 player.GiveArmor(2);
-                player.message = GOTMSPHERE;
+                player.message = thouchThingsMessage.getGOTMSPHERE();
                 sound = sfxenum_t.sfx_getpow;
                 break;
 
@@ -226,7 +229,7 @@ public interface ActionsThings extends ActionTrait {
             // leave cards for everyone
             case SPR_BKEY:
                 if (!player.cards[card_t.it_bluecard.ordinal()]) {
-                    player.message = GOTBLUECARD;
+                    player.message = thouchThingsMessage.getGOTBLUECARD();
                 }
                 player.GiveCard(card_t.it_bluecard);
                 if (!DOOM.netgame) {
@@ -236,7 +239,7 @@ public interface ActionsThings extends ActionTrait {
 
             case SPR_YKEY:
                 if (!player.cards[card_t.it_yellowcard.ordinal()]) {
-                    player.message = GOTYELWCARD;
+                    player.message = thouchThingsMessage.getGOTYELWCARD();
                 }
                 player.GiveCard(card_t.it_yellowcard);
                 if (!DOOM.netgame) {
@@ -246,7 +249,7 @@ public interface ActionsThings extends ActionTrait {
 
             case SPR_RKEY:
                 if (!player.cards[card_t.it_redcard.ordinal()]) {
-                    player.message = GOTREDCARD;
+                    player.message = thouchThingsMessage.getGOTREDCARD();
                 }
                 player.GiveCard(card_t.it_redcard);
                 if (!DOOM.netgame) {
@@ -256,7 +259,7 @@ public interface ActionsThings extends ActionTrait {
 
             case SPR_BSKU:
                 if (!player.cards[card_t.it_blueskull.ordinal()]) {
-                    player.message = GOTBLUESKUL;
+                    player.message = thouchThingsMessage.getGOTBLUESKUL();
                 }
                 player.GiveCard(card_t.it_blueskull);
                 if (!DOOM.netgame) {
@@ -266,7 +269,7 @@ public interface ActionsThings extends ActionTrait {
 
             case SPR_YSKU:
                 if (!player.cards[card_t.it_yellowskull.ordinal()]) {
-                    player.message = GOTYELWSKUL;
+                    player.message = thouchThingsMessage.getGOTYELWSKUL();
                 }
                 player.GiveCard(card_t.it_yellowskull);
                 if (!DOOM.netgame) {
@@ -276,7 +279,7 @@ public interface ActionsThings extends ActionTrait {
 
             case SPR_RSKU:
                 if (!player.cards[card_t.it_redskull.ordinal()]) {
-                    player.message = GOTREDSKULL;
+                    player.message = thouchThingsMessage.getGOTREDSKULL();
                 }
                 player.GiveCard(card_t.it_redskull);
                 if (!DOOM.netgame) {
@@ -289,7 +292,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GiveBody(10)) {
                     return;
                 }
-                player.message = GOTSTIM;
+                player.message = thouchThingsMessage.getGOTSTIM();
                 break;
 
             case SPR_MEDI:
@@ -305,10 +308,11 @@ public interface ActionsThings extends ActionTrait {
 
                 if (DOOM.CM.equals(Settings.fix_medi_need, Boolean.FALSE)) // default behavior - with bug
                 {
-                    player.message = player.health[0] < 25 ? GOTMEDINEED : GOTMEDIKIT;
+                    player.message = player.health[0] < 25 ?
+                            thouchThingsMessage.getGOTMEDINEED() : thouchThingsMessage.getGOTMEDIKIT();
                 } else //proper behavior
                 {
-                    player.message = need ? GOTMEDINEED : GOTMEDIKIT;
+                    player.message = need ? thouchThingsMessage.getGOTMEDINEED() : thouchThingsMessage.getGOTMEDIKIT();
                 }
 
                 break;
@@ -318,7 +322,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GivePower(pw_invulnerability)) {
                     return;
                 }
-                player.message = GOTINVUL;
+                player.message = thouchThingsMessage.getGOTINVUL();
                 sound = sfxenum_t.sfx_getpow;
                 break;
 
@@ -326,7 +330,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GivePower(pw_strength)) {
                     return;
                 }
-                player.message = GOTBERSERK;
+                player.message = thouchThingsMessage.getGOTBERSERK();
                 if (player.readyweapon != weapontype_t.wp_fist) {
                     player.pendingweapon = weapontype_t.wp_fist;
                 }
@@ -337,7 +341,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GivePower(pw_invisibility)) {
                     return;
                 }
-                player.message = GOTINVIS;
+                player.message = thouchThingsMessage.getGOTINVIS();
                 sound = sfxenum_t.sfx_getpow;
                 break;
 
@@ -345,7 +349,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GivePower(pw_ironfeet)) {
                     return;
                 }
-                player.message = GOTSUIT;
+                player.message = thouchThingsMessage.getGOTSUIT();
                 sound = sfxenum_t.sfx_getpow;
                 break;
 
@@ -353,7 +357,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GivePower(pw_allmap)) {
                     return;
                 }
-                player.message = GOTMAP;
+                player.message = thouchThingsMessage.getGOTMAP();
                 sound = sfxenum_t.sfx_getpow;
                 break;
 
@@ -361,7 +365,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GivePower(pw_infrared)) {
                     return;
                 }
-                player.message = GOTVISOR;
+                player.message = thouchThingsMessage.getGOTVISOR();
                 sound = sfxenum_t.sfx_getpow;
                 break;
 
@@ -376,56 +380,56 @@ public interface ActionsThings extends ActionTrait {
                         return;
                     }
                 }
-                player.message = GOTCLIP;
+                player.message = thouchThingsMessage.getGOTCLIP();
                 break;
 
             case SPR_AMMO:
                 if (!player.GiveAmmo(ammotype_t.am_clip, 5)) {
                     return;
                 }
-                player.message = GOTCLIPBOX;
+                player.message = thouchThingsMessage.getGOTCLIPBOX();
                 break;
 
             case SPR_ROCK:
                 if (!player.GiveAmmo(ammotype_t.am_misl, 1)) {
                     return;
                 }
-                player.message = GOTROCKET;
+                player.message = thouchThingsMessage.getGOTROCKET();
                 break;
 
             case SPR_BROK:
                 if (!player.GiveAmmo(ammotype_t.am_misl, 5)) {
                     return;
                 }
-                player.message = GOTROCKBOX;
+                player.message = thouchThingsMessage.getGOTROCKBOX();
                 break;
 
             case SPR_CELL:
                 if (!player.GiveAmmo(ammotype_t.am_cell, 1)) {
                     return;
                 }
-                player.message = GOTCELL;
+                player.message = thouchThingsMessage.getGOTCELL();
                 break;
 
             case SPR_CELP:
                 if (!player.GiveAmmo(ammotype_t.am_cell, 5)) {
                     return;
                 }
-                player.message = GOTCELLBOX;
+                player.message = thouchThingsMessage.getGOTCELLBOX();
                 break;
 
             case SPR_SHEL:
                 if (!player.GiveAmmo(ammotype_t.am_shell, 1)) {
                     return;
                 }
-                player.message = GOTSHELLS;
+                player.message = thouchThingsMessage.getGOTSHELLS();
                 break;
 
             case SPR_SBOX:
                 if (!player.GiveAmmo(ammotype_t.am_shell, 5)) {
                     return;
                 }
-                player.message = GOTSHELLBOX;
+                player.message = thouchThingsMessage.getGOTSHELLBOX();
                 break;
 
             case SPR_BPAK:
@@ -438,7 +442,7 @@ public interface ActionsThings extends ActionTrait {
                 for (i = 0; i < NUMAMMO; i++) {
                     player.GiveAmmo(ammotype_t.values()[i], 1);
                 }
-                player.message = GOTBACKPACK;
+                player.message = thouchThingsMessage.getGOTBACKPACK();
                 break;
 
             // weapons
@@ -446,7 +450,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GiveWeapon(weapontype_t.wp_bfg, false)) {
                     return;
                 }
-                player.message = GOTBFG9000;
+                player.message = thouchThingsMessage.getGOTBFG9000();
                 sound = sfxenum_t.sfx_wpnup;
                 break;
 
@@ -455,7 +459,7 @@ public interface ActionsThings extends ActionTrait {
                     (special.flags & MF_DROPPED) != 0)) {
                     return;
                 }
-                player.message = GOTCHAINGUN;
+                player.message = thouchThingsMessage.getGOTCHAINGUN();
                 sound = sfxenum_t.sfx_wpnup;
                 break;
 
@@ -463,7 +467,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GiveWeapon(weapontype_t.wp_chainsaw, false)) {
                     return;
                 }
-                player.message = GOTCHAINSAW;
+                player.message = thouchThingsMessage.getGOTCHAINSAW();
                 sound = sfxenum_t.sfx_wpnup;
                 break;
 
@@ -471,7 +475,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GiveWeapon(weapontype_t.wp_missile, false)) {
                     return;
                 }
-                player.message = GOTLAUNCHER;
+                player.message = thouchThingsMessage.getGOTLAUNCHER();
                 sound = sfxenum_t.sfx_wpnup;
                 break;
 
@@ -479,7 +483,7 @@ public interface ActionsThings extends ActionTrait {
                 if (!player.GiveWeapon(weapontype_t.wp_plasma, false)) {
                     return;
                 }
-                player.message = GOTPLASMA;
+                player.message = thouchThingsMessage.getGOTPLASMA();
                 sound = sfxenum_t.sfx_wpnup;
                 break;
 
@@ -488,7 +492,7 @@ public interface ActionsThings extends ActionTrait {
                     (special.flags & MF_DROPPED) != 0)) {
                     return;
                 }
-                player.message = GOTSHOTGUN;
+                player.message = thouchThingsMessage.getGOTSHOTGUN();
                 sound = sfxenum_t.sfx_wpnup;
                 break;
 
@@ -497,7 +501,7 @@ public interface ActionsThings extends ActionTrait {
                     (special.flags & MF_DROPPED) != 0)) {
                     return;
                 }
-                player.message = GOTSHOTGUN2;
+                player.message = thouchThingsMessage.getGOTSHOTGUN2();
                 sound = sfxenum_t.sfx_wpnup;
                 break;
 
